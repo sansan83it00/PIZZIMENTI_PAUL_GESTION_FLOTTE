@@ -1,0 +1,9 @@
+{%  extends "base.html.twig" %}
+{% block body %}
+    <a href="{{ path('new_container') }}">Créer un nouveau produit</a>
+    <ul>
+    {% for container in listContainer %}
+        <li><b>{{ container.id }}</b> : {{ container.color }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
