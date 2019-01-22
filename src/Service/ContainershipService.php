@@ -8,14 +8,14 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ContainershipService
 {
     private $em;
 
-    public function __construct(EntityManagerInterface $em){
+    public function __construct(EntityManagerInterface $em)
+    {
         $this->em = $em;
     }
 
@@ -23,12 +23,14 @@ class ContainershipService
      * Renvoie la liste des bateaux
      * @return array|object[]
      */
-    public function getListContainership(){
+    public function getListContainership(): array
+    {
         $listContainership = $this->em->getRepository('App:Containership')->findAll();
         return $listContainership;
     }
 
-    public function getContainershipById($id){
+    public function getContainershipById($id)
+    {
         $containership = $this->em->getRepository('App:Containership')->find($id);
         return $containership;
     }

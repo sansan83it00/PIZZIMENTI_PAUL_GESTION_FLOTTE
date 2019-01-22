@@ -14,7 +14,8 @@ class ContainerService
 {
     private $em;
 
-    public function __construct(EntityManager $em){
+    public function __construct(EntityManager $em)
+    {
         $this->em = $em;
     }
 
@@ -22,12 +23,14 @@ class ContainerService
      * Renvoie la liste des conteneurs
      * @return array|object[]
      */
-    public function getListContainer(){
+    public function getListContainer(): array
+    {
         $listContainer = $this->em->getRepository('App:Container')->findAll();
         return $listContainer;
     }
 
-    public function getContainerById($id){
+    public function getContainerById($id)
+    {
         $container = $this->em->getRepository('App:Container')->find($id);
         return $container;
     }

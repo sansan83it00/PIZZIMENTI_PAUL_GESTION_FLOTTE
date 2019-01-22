@@ -16,7 +16,8 @@ class ContainerProductController extends AbstractController
     /**
      * @Route("/product-container/new")
      */
-    public function new(){
-        
+    public function new(): void
+    {
+
     }
 }

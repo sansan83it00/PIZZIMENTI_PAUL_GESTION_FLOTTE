@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Container
  *
- * @ORM\Table(name="container", uniqueConstraints={@ORM\UniqueConstraint(name="CONTAINER_ID_uindex", columns={"ID"})}, indexes={@ORM\Index(name="CONTAINER_CONTAINER_MODEL_ID_fk", columns={"CONTAINER_MODEL_ID"}), @ORM\Index(name="CONTAINER_CONTAINERSHIP_ID_fk", columns={"CONTAINERSHIP_ID"})})
+ * @ORM\Table(name="CONTAINER", uniqueConstraints={@ORM\UniqueConstraint(name="CONTAINER_ID_uindex", columns={"ID"})}, indexes={@ORM\Index(name="CONTAINER_CONTAINER_MODEL_ID_fk", columns={"CONTAINER_MODEL_ID"}), @ORM\Index(name="CONTAINER_CONTAINERSHIP_ID_fk", columns={"CONTAINERSHIP_ID"})})
  * @ORM\Entity(repositoryClass="App\Repository\ContainerRepository")
  */
 class Container
@@ -29,7 +29,7 @@ class Container
     private $color;
 
     /**
-     * @var \Containership
+     * @var Containership
      *
      * @ORM\ManyToOne(targetEntity="Containership")
      * @ORM\JoinColumns({
@@ -39,7 +39,7 @@ class Container
     private $containership;
 
     /**
-     * @var \ContainerModel
+     * @var ContainerModel
      *
      * @ORM\ManyToOne(targetEntity="ContainerModel")
      * @ORM\JoinColumns({

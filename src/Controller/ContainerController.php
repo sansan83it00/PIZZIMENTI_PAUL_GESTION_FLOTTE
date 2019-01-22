@@ -14,7 +14,6 @@ use App\Entity\Containership;
 use App\Service\ContainerService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,8 +23,11 @@ class ContainerController extends AbstractController
 {
     /**
      * @Route("/container")
+     * @param ContainerService $containerService
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(ContainerService $containerService){
+    public function index(ContainerService $containerService): \Symfony\Component\HttpFoundation\Response
+    {
         $listContainer = $containerService->getListContainer();
         return $this->render('container/listContainer.html.twig', [
             'listContainer' => $listContainer
@@ -34,8 +36,12 @@ class ContainerController extends AbstractController
 
     /**
      * @Route("/container/{id<\d+>}")
+     * @param $id
+     * @param ContainerService $containerService
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getContainerById($id,ContainerService $containerService){
+    public function getContainerById($id, ContainerService $containerService): \Symfony\Component\HttpFoundation\Response
+    {
         $container = $containerService->getContainerById($id);
         return $this->render('container/container.html.twig', [
             'container' => $container
@@ -44,8 +50,11 @@ class ContainerController extends AbstractController
 
     /**
      * @Route("/container/new", name="new_container")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function new(Request $request){
+    public function new(Request $request): \Symfony\Component\HttpFoundation\Response
+    {
         $container = new Container();
         $form = $this->createFormBuilder($container)
             ->add('color', TextType::class)
@@ -54,8 +63,7 @@ class ContainerController extends AbstractController
             ->add('save', SubmitType::class, array('label' => 'Create Container'))
             ->getForm();
 
-        if ($request->getMethod() === 'POST')
-        {
+        if ($request->getMethod() === 'POST') {
             $entityManager = $this->getDoctrine()->getManager();
             $form->handleRequest($request);
 

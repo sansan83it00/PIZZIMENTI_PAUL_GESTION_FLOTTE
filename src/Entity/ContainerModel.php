@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ContainerModel
  *
- * @ORM\Table(name="container_model")
+ * @ORM\Table(name="CONTAINER_MODEL")
  * @ORM\Entity(repositoryClass="App\Repository\ContainerModelRepository")
  */
 class ContainerModel

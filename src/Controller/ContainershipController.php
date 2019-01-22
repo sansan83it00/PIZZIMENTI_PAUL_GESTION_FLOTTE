@@ -22,8 +22,11 @@ class ContainershipController extends AbstractController
 
     /**
      * @Route("/containership")
+     * @param ContainershipService $containershipService
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(ContainershipService $containershipService){
+    public function index(ContainershipService $containershipService): \Symfony\Component\HttpFoundation\Response
+    {
         $listContainership = $containershipService->getListContainership();
         return $this->render('containership/listContainership.html.twig', [
             'listContainership' => $listContainership
@@ -32,8 +35,12 @@ class ContainershipController extends AbstractController
 
     /**
      * @Route("/containership/{id<\d+>}")
+     * @param $id
+     * @param ContainershipService $containershipService
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function getContainershipById($id, ContainershipService $containershipService){
+    public function getContainershipById($id, ContainershipService $containershipService): \Symfony\Component\HttpFoundation\Response
+    {
         $containership = $containershipService->getContainershipById($id);
         return $this->render('containership/containership.html.twig', [
             'containership' => $containership
@@ -42,8 +49,11 @@ class ContainershipController extends AbstractController
 
     /**
      * @Route("/containership/new")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function new(Request $request){
+    public function new(Request $request): \Symfony\Component\HttpFoundation\Response
+    {
         $containership = new Containership();
         $form = $this->createFormBuilder($containership)
             ->add('name', TextType::class)
@@ -52,8 +62,7 @@ class ContainershipController extends AbstractController
             ->add('save', SubmitType::class, array('label' => 'Create Containership'))
             ->getForm();
 
-        if ($request->getMethod() === 'POST')
-        {
+        if ($request->getMethod() === 'POST') {
             $entityManager = $this->getDoctrine()->getManager();
             $form->handleRequest($request);
             $entityManager->persist($containership);

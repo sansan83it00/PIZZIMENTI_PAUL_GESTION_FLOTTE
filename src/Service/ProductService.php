@@ -14,7 +14,8 @@ class ProductService
 {
     private $em;
 
-    public function __construct(EntityManager $em){
+    public function __construct(EntityManager $em)
+    {
         $this->em = $em;
     }
 
@@ -22,12 +23,14 @@ class ProductService
      * Renvoie la liste des conteneurs
      * @return array|object[]
      */
-    public function getListProduct(){
-        $listProduct= $this->em->getRepository('App:Product')->findAll();
+    public function getListProduct(): array
+    {
+        $listProduct = $this->em->getRepository('App:Product')->findAll();
         return $listProduct;
     }
 
-    public function getProductById($id){
+    public function getProductById($id)
+    {
         $container = $this->em->getRepository('App:Product')->find($id);
         return $container;
     }
